@@ -5,6 +5,7 @@ import AboutUs from "./pages/AboutUs";
 import Booking from "./pages/Booking";
 import Give from "./pages/Give";
 import Header from "./components/Header";
+import ContactUS from "./pages/ContactUs";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/give" element={<Give />} />
+        <Route path="/contactus" element={<ContactUS />} />
       </Routes>
     </Router>
   );
