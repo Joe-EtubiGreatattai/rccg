@@ -1,0 +1,96 @@
+import React, { useState } from 'react';
+import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5';
+import '../App.css'; // Import CSS for additional styling
+
+const EventsComponent = () => {
+  const events = [
+    { title: "God Of Mercy", date: "23rd June 2024", image: require('../image/card2.png') },
+    { title: "The Mandate", date: "30th June 2024", image: require('../image/card1.png') },
+    { title: "Pursue Overtake & Recover...", date: "19th May 2024", image: require('../image/card2.png') },
+    { title: "Pursue Overtake & Recover...", date: "19th May 2024", image: require('../image/card3.png') },
+    { title: "Pursue Overtake & Recover...", date: "19th May 2024", image: require('../image/card1.png') },
+  ];
+
+  // Set itemsPerPage based on screen size
+  const getItemsPerPage = () => {
+    return window.innerWidth < 640 ? 1 : 3; // Show 1 item on mobile, 3 on larger screens
+  };
+
+  const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage());
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const handleResize = () => {
+    setItemsPerPage(getItemsPerPage());
+  };
+
+  const handlePrev = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prevIndex) => (prevIndex - itemsPerPage + events.length) % events.length);
+    setTimeout(() => setIsAnimating(false), 300);
+  };
+
+  const handleNext = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prevIndex) => (prevIndex + itemsPerPage) % events.length);
+    setTimeout(() => setIsAnimating(false), 300);
+  };
+
+  const getDisplayedEvents = () => {
+    const result = [];
+    for (let i = 0; i < itemsPerPage; i++) {
+      const index = (currentIndex + i) % events.length;
+      result.push(events[index]);
+    }
+    return result;
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return (
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <h2 className="text-3xl font-bold text-center mb-2">UPCOMING EVENTS & ANNOUNCEMENTS</h2>
+      <p className="text-center text-gray-600 mb-8">Be In The Know About Our Current Programs And Events.</p>
+      
+      <div className="relative">
+        <div className="flex items-center justify-center">
+          <button className="absolute left-0 z-10 p-2 bg-white rounded-full shadow-md" onClick={handlePrev}>
+            <IoChevronBackOutline className="text-2xl text-gray-600" />
+          </button>
+          
+          <div className={`flex overflow-hidden transition-transform duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
+            <div className={`flex space-x-4 ${itemsPerPage === 1 ? 'flex-col' : ''}`}>
+              {getDisplayedEvents().map((event, index) => (
+                <div key={index} className={`flex-none ${itemsPerPage === 1 ? 'w-full' : 'w-64'} ${itemsPerPage === 1 ? 'mb-4' : ''}`}>
+                  <img src={event.image} alt={event.title} className="w-full h-80 object-cover rounded-lg mb-2" />
+                  <h3 className="font-semibold">{event.title}</h3>
+                  <p className="text-sm text-gray-600">{event.date}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <button className="absolute right-0 z-10 p-2 bg-white rounded-full shadow-md" onClick={handleNext}>
+            <IoChevronForwardOutline className="text-2xl text-gray-600" />
+          </button>
+        </div>
+      </div>
+      
+      <div className="flex justify-center mt-4 space-x-2">
+        {Array.from({ length: Math.ceil(events.length / itemsPerPage) }).map((_, index) => (
+          <div 
+            key={index} 
+            className={`w-2 h-2 rounded-full ${index === Math.floor(currentIndex / itemsPerPage) ? 'bg-blue-500' : 'bg-gray-300'}`}
+          ></div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default EventsComponent;
