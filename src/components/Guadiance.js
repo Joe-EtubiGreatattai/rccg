@@ -13,15 +13,15 @@ const GudaianceSection = () => {
         />
       </div>
       <div className="mt-8 md:mt-0  w-full text-left md:text-left">
-        <h1 className="text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
+        <h1 className="text-2xl md:text-5xl font-bold text-gray-800 leading-tight">
         Do you need Guidance?
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-gray-600">
+        <p className="mt-4 text-base md:text-xl text-gray-600">
           Whether you seek guidance, prayer Pathner, or simply wish to connect,
           our church is here for you. Schedule an appointment for counselling,
           prayer sessions.
         </p>
-        <div className="mt-8">
+        <div className="mt-1 md:mt-8">
           <ContactButton label="Connect" />
         </div>
       </div>

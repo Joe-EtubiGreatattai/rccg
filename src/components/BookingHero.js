@@ -13,10 +13,10 @@ const BookingHeroSection = () => {
       <div className="absolute inset-0 bg-black opacity-80"></div>
 
       <div className="relative flex flex-col items-center text-white px-1 z-10">
-        <h1 className="text-4xl md:text-7xl font-bold mb-4">
+        <h1 className="text-2xl md:text-7xl font-bold mb-4">
           CONNECT WITH OUR CHURCH
         </h1>
-        <p className="text-lg md:text-xl font-light mb-6 md:w-1/2">
+        <p className="text-sm md:text-xl font-light mb-6 md:w-1/2">
           seeking for guidance, prayer, counselling or simply wish to connect,
           our church is here for you. Schedule an appointment for counselling,
           prayer with our pastor and anything you want to discuss with the

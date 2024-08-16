@@ -4,28 +4,28 @@ const DonationComponent = () => {
   return (
     <div className="max-w-2xl mx-auto bg-white rounded-lg my-[3rem] overflow-hidden">
       <div className="p-8">
-        <h2 className="text-2xl font-bold text-center mb-2">
+        <h2 className="text-xl md:text-2xl font-bold md:text-center mb-2">
           TOGETHER, WE CAN MAKE A LASTING IMPACT.
         </h2>
-        <p className="text-base text-center text-gray-600 mb-6">
+        <p className="text-sm md:text-base md:text-center text-gray-600 mb-6">
           Thank You For Your Support And Generosity.
         </p>
 
         <div className="mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="bg-indigo-700 text-white text-center py-4 text-2xl font-semibold">
+          <div className="bg-indigo-700 text-white text-center py-4 text-xl md:text-2xl font-semibold">
             Give
           </div>
           <div className="p-8">
             <div className="border rounded-md mb-6">
               <div className="p-6 text-center">
-                <p className="text-2xl font-semibold text-gray-700">20485918</p>
-                <p className="text-xl text-gray-600">20-45-45</p>
-                <p className="mt-2 text-gray-600">
+                <p className="text-xl md:text-2xl font-semibold text-gray-700">20485918</p>
+                <p className="text-lg md:text-xl text-gray-600">20-45-45</p>
+                <p className="mt-2 text-sm md:text-base text-gray-600">
                   The Redeemed Christian Church Of
                 </p>
-                <p className="text-gray-600">God House Of Mercy High Wycombe</p>
+                <p className="text-sm md:text-base text-gray-600">God House Of Mercy High Wycombe</p>
               </div>
-              <div className="bg-indigo-700 text-white p-4 text-sm text-center">
+              <div className="bg-indigo-700 text-white p-4 text-xs md:text-sm md:text-center">
                 Please Include In The Description What Purpose You Would Be
                 Giving
                 <br />
@@ -35,13 +35,13 @@ const DonationComponent = () => {
 
             <div className="flex items-center justify-center mb-6">
               <div className="border-t border-gray-300 flex-grow"></div>
-              <span className="px-4 text-gray-500">Or</span>
+              <span className="px-4 text-sm md:text-base text-gray-500">Or</span>
               <div className="border-t border-gray-300 flex-grow"></div>
             </div>
 
-            <button className="w-full border-2 border-gray-300 border-dashed text-gray-700 py-3 rounded-lg hover:bg-gray-50 transition duration-300 flex items-center justify-center">
+            <button className="w-full border-2 border-gray-300 border-dashed text-gray-700 py-3 rounded-lg hover:bg-gray-50 transition duration-300 flex items-center justify-center text-sm md:text-base">
               <svg
-                className="w-6 h-6 mr-2"
+                className="w-5 h-5 md:w-6 md:h-6 mr-2"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >

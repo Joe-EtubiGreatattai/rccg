@@ -4,7 +4,9 @@ import AboutHero from "../components/AboutHero";
 import Footer from "../components/Footer";
 import MissionStatement from "../components/MissionStatement";
 import Hopeless from "../components/Hopeless";
-
+import SeniorPastor from "../components/SeniorPastor";
+import ParishPastor from "../components/ParishPastor";
+import GudaianceSection from "../components/Guadiance";
 export default function AboutUs() {
   return (
     <div>
@@ -12,6 +14,8 @@ export default function AboutUs() {
       <AboutHero />
       <MissionStatement />
       <Hopeless />
+      <SeniorPastor />
+      <ParishPastor />
       <Footer />
     </div>
   );

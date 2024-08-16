@@ -14,17 +14,17 @@ const Apply = () => {
       <div className="absolute inset-0 bg-black opacity-80"></div>
 
       <div className="relative text-white px-4 z-10">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4  mx-auto">
+        <h1 className="text-2xl md:text-5xl font-bold mb-4 mx-auto">
           Apply/Support food basket.
         </h1>
-        <p className=" md:text-xl font-light mb-6 max-w-2xl mx-auto">
+        <p className="text-sm md:text-xl font-light mb-6 max-w-2xl mx-auto">
           Join us for our Food Basket Event to support families in need. Our
           church believes in the power of community, especially during
           challenging times. To ensure we have enough food baskets and
           streamline distribution, please also pre-register to receive a basket.{" "}
           <span className="font-bold">
-            “Give, and it will be given to you. A good measure, pressed down,
-            shaken together, and running over, will be poured into your lap.” -
+            "Give, and it will be given to you. A good measure, pressed down,
+            shaken together, and running over, will be poured into your lap." -
             Luke 6:38.
           </span>
           Thank you for being part of our mission to spread love and hope. We

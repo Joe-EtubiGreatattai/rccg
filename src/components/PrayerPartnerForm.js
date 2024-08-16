@@ -30,7 +30,7 @@ const PrayerPartnerForm = () => {
         {['Counselling', 'Prayer Partner', 'Prayer Point'].map((tab) => (
           <button
             key={tab}
-            className={`flex-1 py-7 px-6 text-center text-lg ${
+            className={`flex-1 py-2 md:py-7  px-2 md:px-6 text-center md:text-lg ${
               activeTab === tab
                 ? 'bg-indigo-800 text-white'
                 : 'text-gray-700 hover:bg-gray-100'
@@ -42,7 +42,7 @@ const PrayerPartnerForm = () => {
         ))}
       </div>
       <div className="p-8">
-        <h2 className="text-2xl font-semibold mb-6">Find A Prayer Partner</h2>
+      <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Find A Prayer Partner</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <input
             type="text"
@@ -80,7 +80,7 @@ const PrayerPartnerForm = () => {
           ></textarea>
           <button
             type="submit"
-            className="w-full bg-indigo-700 text-white py-4 rounded-md hover:bg-indigo-800 transition duration-300 text-lg font-semibold"
+            className="w-full bg-indigo-700 text-white py-2 md:py-4 rounded-md hover:bg-indigo-800 transition duration-300 text-lg font-semibold"
           >
             Send
           </button>
