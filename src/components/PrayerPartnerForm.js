@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { Progress } from "@chakra-ui/react";
 
 const PrayerPartnerForm = () => {
   const [activeTab, setActiveTab] = useState("Prayer Partner");
@@ -7,9 +9,9 @@ const PrayerPartnerForm = () => {
     phoneNumber: "",
     email: "",
     reason: "",
-    counsellingReason: "",
-    prayerPoint: "",
   });
+
+  const [isLoading, setIsLoading] = useState(false); // Loading state
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -19,8 +21,6 @@ const PrayerPartnerForm = () => {
       phoneNumber: "",
       email: "",
       reason: "",
-      counsellingReason: "",
-      prayerPoint: "",
     });
   };
 
@@ -29,11 +29,58 @@ const PrayerPartnerForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted:", formData);
-  };
+    setIsLoading(true); // Start loading
+
+    let endpoint = "";
+    let requestData = {
+        name: formData.name,
+        phoneNumber: formData.phoneNumber,
+        email: formData.email,
+        reason: formData.reason, // Always include reason in the request data
+    };
+
+    switch (activeTab) {
+        case "Prayer Partner":
+            endpoint = "https://rccg-t45u.onrender.com/prayer-partner";
+            break;
+        case "Counselling":
+            endpoint = "https://rccg-t45u.onrender.com/couselling";
+            break;
+        case "Prayer Point":
+            endpoint = "https://rccg-t45u.onrender.com/prayer-point";
+            requestData.reason = formData.prayerPoint; // Use prayerPoint for the reason
+            break;
+        default:
+            return;
+    }
+
+    try {
+        const response = await axios.post(
+            endpoint,
+            new URLSearchParams(requestData),
+            {
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+            }
+        );
+        if (response.status === 200) {
+            alert("Your information has been submitted successfully!");
+        } else {
+            alert("Something went wrong. Please try again.");
+        }
+    } catch (error) {
+        console.error("Error submitting the form:", error);
+        alert(
+            "There was an error submitting your information. Please try again later."
+        );
+    } finally {
+        setIsLoading(false); // Stop loading
+    }
+};
+
 
   return (
     <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg mt-[-7rem] z-30 mb-[7rem] overflow-hidden relative">
@@ -41,7 +88,7 @@ const PrayerPartnerForm = () => {
         {["Counselling", "Prayer Partner", "Prayer Point"].map((tab) => (
           <button
             key={tab}
-            className={`flex-1 py-2 md:py-7  px-2 md:px-6 text-center md:text-lg ${
+            className={`flex-1 py-2 md:py-7 px-2 md:px-6 text-center md:text-lg ${
               activeTab === tab
                 ? "bg-indigo-800 text-white"
                 : "text-gray-700 hover:bg-gray-100"
@@ -99,6 +146,14 @@ const PrayerPartnerForm = () => {
               >
                 Send
               </button>
+              {isLoading && (
+                <Progress
+                  size="s"
+                  isIndeterminate
+                  colorScheme="white"
+                  mt={2}
+                />
+              )}
             </form>
             <p className="text-sm text-gray-600 mt-6">
               You Would Receive A Message With The Contact Address Of Your
@@ -109,16 +164,16 @@ const PrayerPartnerForm = () => {
         {activeTab === "Counselling" && (
           <>
             <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">
-            Find the Support You Need
+              Find the Support You Need
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <input
                 type="text"
-                name=""
-                placeholder="what do you want to be counselled on?"
+                name="reason"
+                placeholder="What do you want to be counselled on?"
                 className="w-full p-3 border rounded-md"
                 onChange={handleInputChange}
-                value={formData.name}
+                value={formData.reason}
               />
               <div className="flex space-x-4">
                 <input
@@ -138,55 +193,69 @@ const PrayerPartnerForm = () => {
                   value={formData.email}
                 />
               </div>
-             
               <button
                 type="submit"
                 className="w-full bg-indigo-700 text-white py-2 md:py-4 rounded-md hover:bg-indigo-800 transition duration-300 text-lg font-semibold"
               >
                 Send
               </button>
+              {isLoading && (
+                <Progress
+                  size="xs"
+                  isIndeterminate
+                  colorScheme="purple"
+                  mt={2}
+                />
+              )}
             </form>
           </>
         )}
         {activeTab === "Prayer Point" && (
           <>
             <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">
-            send your prayer point Lets Join our faith with yours
+              Send Your Prayer Point
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <input
                 type="text"
-                name=""
-                placeholder="Prayer point"
+                name="prayerPoint"
+                placeholder="Prayer Point"
                 className="w-full p-3 border rounded-md"
                 onChange={handleInputChange}
-                value={formData.name}
+                value={formData.prayerPoint}
               />
               <div className="flex space-x-4">
                 <input
-                  type=""
-                  name="Name (optional)"
-                  placeholder="Phone Number"
+                  type="tel"
+                  name="phoneNumber"
+                  placeholder="Phone Number (optional)"
                   className="w-1/2 p-3 border rounded-md"
                   onChange={handleInputChange}
                   value={formData.phoneNumber}
                 />
                 <input
                   type="email"
-                  name=""
-                  placeholder="phone number (optional)"
+                  name="email"
+                  placeholder="Email (optional)"
                   className="w-1/2 p-3 border rounded-md"
                   onChange={handleInputChange}
                   value={formData.email}
                 />
               </div>
-             
               <button
                 type="submit"
                 className="w-full bg-indigo-700 text-white py-2 md:py-4 rounded-md hover:bg-indigo-800 transition duration-300 text-lg font-semibold"
               >
                 Send
               </button>
+              {isLoading && (
+                <Progress
+                  size="xs"
+                  isIndeterminate
+                  colorScheme="purple"
+                  mt={2}
+                />
+              )}
             </form>
           </>
         )}

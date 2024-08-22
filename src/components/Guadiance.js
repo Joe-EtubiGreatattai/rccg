@@ -1,8 +1,14 @@
 import React from "react";
 import ContactButton from "./ContactButton";
 import heroImage from "./../image/redem.png";
+import { useNavigate } from "react-router-dom"; 
 
 const GudaianceSection = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleClick = () => {
+    navigate("/booking"); // Navigate to the About Us page
+  };
   return (
     <div className="flex flex-col md:flex-row items-center justify-center p-8 md:p-16 bg-white">
       <div className="w-full">
@@ -22,7 +28,7 @@ const GudaianceSection = () => {
           prayer sessions.
         </p>
         <div className="mt-1 md:mt-8">
-          <ContactButton label="Connect" />
+          <ContactButton label="Connect"   onClick={handleClick}/>
         </div>
       </div>
     </div>

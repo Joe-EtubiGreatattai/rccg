@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import ContactButton from "./ContactButton";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
+  const handleAboutUsClick = () => {
+    navigate("/about-us");
+  };
+
   return (
-    <div className="relative h-screen flex items-center justify-start ">
+    <div className="relative h-screen flex items-center justify-start">
       <img
         src={require("./../image/bg-1.png")}
         alt="Background"
@@ -19,8 +26,7 @@ const HeroSection = () => {
         </h1>
         <ContactButton
           label="About Us"
-          onClick={() => {
-          }}
+          onClick={handleAboutUsClick}
         />
       </div>
     </div>
