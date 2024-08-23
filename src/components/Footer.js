@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import axios from "axios";
 import { Progress } from "@chakra-ui/react";
+import { Link } from "react-router-dom"; // Import Link
 
 const Footer = () => {
   const [formData, setFormData] = useState({
@@ -90,10 +91,18 @@ const Footer = () => {
             <div className="md:flex-1">
               <h3 className="text-lg md:text-xl font-semibold mb-4">Quicklinks</h3>
               <ul className="text-sm md:text-base">
-                <li className="mb-2">Home</li>
-                <li className="mb-2">About Us</li>
-                <li className="mb-2">Booking</li>
-                <li>Give</li>
+                <li className="mb-2">
+                  <Link to="/">Home</Link>
+                </li>
+                <li className="mb-2">
+                  <Link to="/about-us">About Us</Link>
+                </li>
+                <li className="mb-2">
+                  <Link to="/booking">Booking</Link>
+                </li>
+                <li>
+                  <Link to="/give">Give</Link>
+                </li>
               </ul>
             </div>
           </div>
