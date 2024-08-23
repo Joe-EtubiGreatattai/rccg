@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import axios from "axios";
-import { Progress } from "@chakra-ui/react";
+import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@chakra-ui/react";
 import { Link } from "react-router-dom"; // Import Link
 
 const Footer = () => {
@@ -12,6 +12,8 @@ const Footer = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false); // Loading state
+  const [modalContent, setModalContent] = useState(null); // Modal content state
+  const { isOpen, onOpen, onClose } = useDisclosure(); // Modal control
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,6 +26,8 @@ const Footer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true); // Start loading
+    setModalContent(null); // Clear previous modal content
+    onOpen(); // Open the modal
     try {
       const response = await axios.post(
         "https://rccg-t45u.onrender.com/new-member",
@@ -35,13 +39,25 @@ const Footer = () => {
         }
       );
       if (response.status === 200) {
-        alert("Your information has been submitted successfully!");
+        setModalContent({
+          title: "Success",
+          description: "Your information has been submitted successfully!",
+          status: "success",
+        });
       } else {
-        alert("Something went wrong. Please try again.");
+        setModalContent({
+          title: "Error",
+          description: "Something went wrong. Please try again.",
+          status: "error",
+        });
       }
     } catch (error) {
       console.error("Error submitting the form:", error);
-      alert("There was an error submitting your information. Please try again later.");
+      setModalContent({
+        title: "Error",
+        description: "There was an error submitting your information. Please try again later.",
+        status: "error",
+      });
     } finally {
       setIsLoading(false); // Stop loading
     }
@@ -138,17 +154,33 @@ const Footer = () => {
               />
               <button
                 type="submit"
-                className="bg-indigo-700 text-white px-12 py-3 rounded text-sm md:text-base"
+                className={`bg-indigo-700 text-white px-12 py-3 rounded text-sm md:text-base ${
+                  isLoading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={isLoading} // Disable button while loading
               >
-                Send
+                {isLoading ? "Please wait..." : "Send"}
               </button>
-              {isLoading && (
-                <Progress size="xs" isIndeterminate colorScheme="purple" mt={2} />
-              )}
             </form>
           </div>
         </div>
       </div>
+
+      {/* Chakra UI Modal */}
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{modalContent?.title}</ModalHeader>
+          <ModalBody>
+            {modalContent?.description}
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme={modalContent?.status} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </footer>
   );
 };

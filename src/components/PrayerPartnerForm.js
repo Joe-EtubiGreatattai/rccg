@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Progress } from "@chakra-ui/react";
+import {
+  Progress,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 const PrayerPartnerForm = () => {
   const [activeTab, setActiveTab] = useState("Prayer Partner");
@@ -12,10 +23,12 @@ const PrayerPartnerForm = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false); // Loading state
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [modalMessage, setModalMessage] = useState("");
+  const [submitType, setSubmitType] = useState(""); // Track the type being submitted
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
-    // Reset the form data when the tab changes
     setFormData({
       name: "",
       phoneNumber: "",
@@ -31,56 +44,57 @@ const PrayerPartnerForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); // Start loading
+    setIsLoading(true);
 
     let endpoint = "";
     let requestData = {
-        name: formData.name,
-        phoneNumber: formData.phoneNumber,
-        email: formData.email,
-        reason: formData.reason, // Always include reason in the request data
+      name: formData.name,
+      phoneNumber: formData.phoneNumber,
+      email: formData.email,
+      reason: formData.reason,
     };
 
     switch (activeTab) {
-        case "Prayer Partner":
-            endpoint = "https://rccg-t45u.onrender.com/prayer-partner";
-            break;
-        case "Counselling":
-            endpoint = "https://rccg-t45u.onrender.com/couselling";
-            break;
-        case "Prayer Point":
-            endpoint = "https://rccg-t45u.onrender.com/prayer-point";
-            requestData.reason = formData.prayerPoint; // Use prayerPoint for the reason
-            break;
-        default:
-            return;
+      case "Prayer Partner":
+        endpoint = "https://rccg-t45u.onrender.com/prayer-partner";
+        setSubmitType("Prayer Partner");
+        break;
+      case "Counselling":
+        endpoint = "https://rccg-t45u.onrender.com/couselling";
+        setSubmitType("Counselling");
+        break;
+      case "Prayer Point":
+        endpoint = "https://rccg-t45u.onrender.com/prayer-point";
+        requestData.reason = formData.reason;
+        setSubmitType("Prayer Point");
+        break;
+      default:
+        return;
     }
 
     try {
-        const response = await axios.post(
-            endpoint,
-            new URLSearchParams(requestData),
-            {
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-            }
-        );
-        if (response.status === 200) {
-            alert("Your information has been submitted successfully!");
-        } else {
-            alert("Something went wrong. Please try again.");
+      const response = await axios.post(
+        endpoint,
+        new URLSearchParams(requestData),
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
         }
+      );
+      if (response.status === 200) {
+        setModalMessage(`${submitType} submitted successfully!`);
+      } else {
+        setModalMessage(`Something went wrong with your ${submitType} submission. Please try again.`);
+      }
     } catch (error) {
-        console.error("Error submitting the form:", error);
-        alert(
-            "There was an error submitting your information. Please try again later."
-        );
+      console.error("Error submitting the form:", error);
+      setModalMessage(`There was an error submitting your ${submitType}. Please try again later.`);
     } finally {
-        setIsLoading(false); // Stop loading
+      setIsLoading(false);
+      onOpen(); // Open the modal after submission
     }
-};
-
+  };
 
   return (
     <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg mt-[-7rem] z-30 mb-[7rem] overflow-hidden relative">
@@ -142,15 +156,18 @@ const PrayerPartnerForm = () => {
               ></textarea>
               <button
                 type="submit"
-                className="w-full bg-indigo-700 text-white py-2 md:py-4 rounded-md hover:bg-indigo-800 transition duration-300 text-lg font-semibold"
+                className={`w-full bg-indigo-700 text-white py-2 md:py-4 rounded-md hover:bg-indigo-800 transition duration-300 text-lg font-semibold ${
+                  isLoading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={isLoading} // Disable button while loading
               >
-                Send
+                {isLoading ? `Submitting ${submitType}...` : "Send"}
               </button>
               {isLoading && (
                 <Progress
-                  size="s"
+                  size="xs"
                   isIndeterminate
-                  colorScheme="white"
+                  colorScheme="purple"
                   mt={2}
                 />
               )}
@@ -195,9 +212,12 @@ const PrayerPartnerForm = () => {
               </div>
               <button
                 type="submit"
-                className="w-full bg-indigo-700 text-white py-2 md:py-4 rounded-md hover:bg-indigo-800 transition duration-300 text-lg font-semibold"
+                className={`w-full bg-indigo-700 text-white py-2 md:py-4 rounded-md hover:bg-indigo-800 transition duration-300 text-lg font-semibold ${
+                  isLoading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={isLoading}
               >
-                Send
+                {isLoading ? `Submitting ${submitType}...` : "Send"}
               </button>
               {isLoading && (
                 <Progress
@@ -244,9 +264,12 @@ const PrayerPartnerForm = () => {
               </div>
               <button
                 type="submit"
-                className="w-full bg-indigo-700 text-white py-2 md:py-4 rounded-md hover:bg-indigo-800 transition duration-300 text-lg font-semibold"
+                className={`w-full bg-indigo-700 text-white py-2 md:py-4 rounded-md hover:bg-indigo-800 transition duration-300 text-lg font-semibold ${
+                  isLoading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={isLoading}
               >
-                Send
+                {isLoading ? `Submitting ${submitType}...` : "Send"}
               </button>
               {isLoading && (
                 <Progress
@@ -260,6 +283,21 @@ const PrayerPartnerForm = () => {
           </>
         )}
       </div>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{submitType}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <p>{modalMessage}</p>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="red" onClick={onClose}>
+            close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </div>
   );
 };
