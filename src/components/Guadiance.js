@@ -7,28 +7,28 @@ const GudaianceSection = () => {
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleClick = () => {
-    navigate("/booking"); // Navigate to the About Us page
+    navigate("/booking"); // Navigate to the Booking page
   };
+
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center p-8 md:p-16 bg-white">
-      <div className="w-full">
+    <div className="flex flex-col md:flex-row items-center justify-center p-6 md:p-16 bg-white">
+      <div className="w-full md:w-1/2">
         <img
           src={heroImage}
           alt="Pastor"
-          className="rounded-lg md:w-2/3 h-auto object-cover"
+          className="rounded-lg w-full h-auto object-cover"
         />
       </div>
-      <div className="mt-8 md:mt-0  w-full text-left md:text-left">
-        <h1 className="text-2xl md:text-5xl font-bold text-gray-800 leading-tight">
-        Do you need Guidance?
+      <div className="mt-8 md:mt-0 w-full text-left md:text-left">
+        <h1 className="text-2xl md:text-5xl font-bold text-gray-800 leading-snug md:leading-tight">
+          Do you need Guidance?
         </h1>
-        <p className="mt-4 text-base md:text-xl text-gray-600">
-          Whether you seek guidance, prayer Pathner, or simply wish to connect,
-          our church is here for you. Schedule an appointment for counselling,
-          prayer sessions.
+        <p className="mt-4 text-sm md:text-xl text-gray-600 leading-relaxed md:leading-loose">
+          Whether you seek guidance, a prayer partner, or simply wish to connect,
+          our church is here for you. Schedule an appointment for counseling or prayer sessions.
         </p>
-        <div className="mt-1 md:mt-8">
-          <ContactButton label="Connect"   onClick={handleClick}/>
+        <div className="mt-4 md:mt-8">
+          <ContactButton label="Connect" onClick={handleClick} />
         </div>
       </div>
     </div>
