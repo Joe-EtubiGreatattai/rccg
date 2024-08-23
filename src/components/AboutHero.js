@@ -4,7 +4,7 @@ import backgroundImage from "./../image/Rectangle4.png";
 const AboutHero = () => {
   return (
     <div
-      className="relative flex items-center justify-center md:text-center mt-[6rem] h-[55vh] bg-cover bg-center"
+      className="relative flex items-center justify-center md:text-center mt-[5rem] md:mt-[6rem] h-[55vh] bg-cover bg-center"
       style={{
         backgroundImage: `url(${backgroundImage})`,
       }}
