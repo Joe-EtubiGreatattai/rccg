@@ -32,7 +32,7 @@ const Header = () => {
           <img
             src={require("./../image/logo.png")}
             alt="Logo"
-            className="h-12 md:h-15 w-auto md:w-80"
+            className="h-12 md:h-15 w-auto md:w-60"
           />
           <nav className="hidden md:flex space-x-8 items-center">
             {navLinks.map((link) => (
