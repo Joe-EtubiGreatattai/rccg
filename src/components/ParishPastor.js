@@ -7,7 +7,7 @@ const ParishPastor = () => {
       img: require("./../image/Group7(1).png"),
     },
     {
-      name: "Pastor Mrs Olufunke Stephen",
+      name: "Pastor Bimpe Lawal",
       img: require("./../image/Group7(2).png"),
     },
   ];

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ChakraProvider, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, FormControl, FormLabel, Input, Select } from "@chakra-ui/react";
+import { ChakraProvider, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, FormControl, FormLabel, Input, Select, Image } from "@chakra-ui/react";
 
 const DonationComponent = () => {
   const [paymentHandler, setPaymentHandler] = useState(null);
@@ -63,26 +63,11 @@ const DonationComponent = () => {
               Give
             </div>
             <div className="p-8">
-              <div className="border rounded-md mb-6">
-                <div className="p-6 text-center">
-                  <p className="text-xl md:text-2xl font-semibold text-gray-700">
-                    20485918
-                  </p>
-                  <p className="text-lg md:text-xl text-gray-600">20-45-45</p>
-                  <p className="mt-2 text-sm md:text-base text-gray-600">
-                    The Redeemed Christian Church Of
-                  </p>
-                  <p className="text-sm md:text-base text-gray-600">
-                    God House Of Mercy High Wycombe
-                  </p>
-                </div>
-                <div className="bg-indigo-700 text-white p-4 text-xs md:text-sm md:text-center">
-                  Please Include In The Description What Purpose You Would Be
-                  Giving
-                  <br />
-                  For, While You Make Your Transfer.
-                </div>
-              </div>
+              <Image 
+                src={require('./../image/flier.jpg')} 
+                alt="Church Bank Details" 
+                className="w-full mb-6 rounded-lg"
+              />
 
               <div className="flex items-center justify-center mb-6">
                 <div className="border-t border-gray-300 flex-grow"></div>

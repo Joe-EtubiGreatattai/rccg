@@ -54,6 +54,7 @@ const PrayerPartnerForm = () => {
       reason: formData.reason,
     };
 
+    // Set submitType before the submission process
     switch (activeTab) {
       case "Prayer Partner":
         endpoint = "https://rccg-t45u.onrender.com/prayer-partner";
@@ -83,16 +84,16 @@ const PrayerPartnerForm = () => {
         }
       );
       if (response.status === 200) {
-        setModalMessage(`${submitType} submitted successfully!`);
+        setModalMessage(`${activeTab} submitted successfully!`);
       } else {
-        setModalMessage(`Something went wrong with your ${submitType} submission. Please try again.`);
+        setModalMessage(`Something went wrong with your ${activeTab} submission. Please try again.`);
       }
     } catch (error) {
       console.error("Error submitting the form:", error);
-      setModalMessage(`There was an error submitting your ${submitType}. Please try again later.`);
+      setModalMessage(`There was an error submitting your ${activeTab}. Please try again later.`);
     } finally {
       setIsLoading(false);
-      onOpen(); // Open the modal after submission
+      onOpen();
     }
   };
 
