@@ -1,6 +1,13 @@
 import React from "react";
+import { motion } from "framer-motion";
 import backgroundImage from "./../image/goal.png";
 import ContactButton from "./ContactButton";
+
+// Animation variants for fade-in from the bottom
+const fadeInFromBottom = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+};
 
 const Apply = () => {
   return (
@@ -14,10 +21,22 @@ const Apply = () => {
       <div className="absolute inset-0 bg-black opacity-80"></div>
 
       <div className="relative text-white px-4 z-10">
-        <h1 className="text-2xl md:text-5xl font-bold mb-4 mx-auto">
+        <motion.h1
+          className="text-2xl md:text-5xl font-bold mb-4 mx-auto"
+          variants={fadeInFromBottom}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
           Apply/Support food basket.
-        </h1>
-        <p className="text-sm md:text-xl font-light mb-6 max-w-2xl mx-auto">
+        </motion.h1>
+        <motion.p
+          className="text-sm md:text-xl font-light mb-6 max-w-2xl mx-auto"
+          variants={fadeInFromBottom}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+        >
           Join us for our Food Basket Event to support families in need. Our
           church believes in the power of community, especially during
           challenging times. To ensure we have enough food baskets and
@@ -29,7 +48,7 @@ const Apply = () => {
           </span>
           Thank you for being part of our mission to spread love and hope. We
           look forward to seeing you!
-        </p>
+        </motion.p>
         <ContactButton label="Apply/support"/>
       </div>
     </div>

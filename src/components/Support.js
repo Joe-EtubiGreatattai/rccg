@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import backgroundImage from "./../image/goal.png";
 
 const SupportSection = () => {
@@ -12,7 +13,12 @@ const SupportSection = () => {
       <div className="absolute inset-0 bg-[#2E3795] opacity-70"></div>
       <div className="absolute inset-0 bg-black opacity-80"></div>
 
-      <div className="relative text-white max-w-2xl px-4 z-10">
+      <motion.div
+        className="relative text-white max-w-2xl px-4 z-10"
+        initial={{ opacity: 0, y: 50 }}  // Start faded out and below position
+        animate={{ opacity: 1, y: 0 }}   // Fade in and move up to original position
+        transition={{ duration: 1 }}     // Adjust duration for a smooth effect
+      >
         <h1 className="text-lg sm:text-xl font-bold mb-4 leading-tight">
           To Support Our Mission and Ministries
         </h1>
@@ -21,7 +27,7 @@ const SupportSection = () => {
           church is here for you. Schedule an appointment for counseling, prayer
           sessions, and more with ease.
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 };

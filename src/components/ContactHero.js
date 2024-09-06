@@ -1,5 +1,12 @@
 import React from "react";
+import { motion } from "framer-motion";
 import backgroundImage from "./../image/Rectangle4.png";
+
+// Animation variants
+const fadeInFromLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0 },
+};
 
 const ContactHero = () => {
   return (
@@ -13,9 +20,15 @@ const ContactHero = () => {
       <div className="absolute inset-0 bg-black opacity-80"></div>
 
       <div className="relative flex flex-col items-center text-white px-1 z-10">
-        <h1 className="text-2xl md:text-7xl font-bold mb-4">
+        <motion.h1
+          className="text-2xl md:text-7xl font-bold mb-4"
+          variants={fadeInFromLeft}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
           SEND US A MESSAGE
-        </h1>
+        </motion.h1>
       </div>
     </div>
   );

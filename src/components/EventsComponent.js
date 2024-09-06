@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
+import { motion } from "framer-motion"; // Import framer-motion
 import "../App.css"; // Import CSS for additional styling
 
 const EventsComponent = () => {
@@ -31,7 +32,6 @@ const EventsComponent = () => {
     },
   ];
 
-  // Set itemsPerPage based on screen size
   const getItemsPerPage = () => {
     return window.innerWidth < 640 ? 1 : 3; // Show 1 item on mobile, 3 on larger screens
   };
@@ -43,6 +43,14 @@ const EventsComponent = () => {
   const handleResize = () => {
     setItemsPerPage(getItemsPerPage());
   };
+
+  // Automatic slide every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 3000); // 3 seconds
+    return () => clearInterval(interval); // Clear interval on unmount
+  }, [currentIndex, itemsPerPage]);
 
   const handlePrev = () => {
     if (isAnimating) return;
@@ -69,19 +77,29 @@ const EventsComponent = () => {
     return result;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <h2 className="text-2xl md:text-3xl font-bold md:text-center mb-2">
+      <motion.h2
+        className="text-2xl md:text-3xl font-bold md:text-center mb-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         UPCOMING EVENTS & ANNOUNCEMENTS
-      </h2>
-      <p className="text-sm md:text-base md:text-center text-gray-600 mb-8">
+      </motion.h2>
+      <motion.p
+        className="text-sm md:text-base md:text-center text-gray-600 mb-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.3 }}
+      >
         Be In The Know About Our Current Programs And Events.
-      </p>
+      </motion.p>
 
       <div className="relative">
         <div className="flex items-center justify-center">
@@ -103,11 +121,14 @@ const EventsComponent = () => {
               }`}
             >
               {getDisplayedEvents().map((event, index) => (
-                <div
+                <motion.div
                   key={index}
                   className={`flex-none ${
                     itemsPerPage === 1 ? "w-full" : "w-64"
                   } ${itemsPerPage === 1 ? "mb-4" : ""}`}
+                  initial={{ opacity: 0, y: 50 }} // Start from below
+                  animate={{ opacity: 1, y: 0 }} // Fade in and move up
+                  transition={{ duration: 0.5 }}
                 >
                   <img
                     src={event.image}
@@ -120,7 +141,7 @@ const EventsComponent = () => {
                   <p className="text-xs md:text-sm text-gray-600">
                     {event.date}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

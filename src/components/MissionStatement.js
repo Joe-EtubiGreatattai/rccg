@@ -1,26 +1,45 @@
 import React from "react";
+import OnlineServiceButton from "./OnlineServiceButton";
+import { motion } from "framer-motion";
+
+const MotionDiv = motion.div; // Create a motion-enabled div
 
 const MissionStatement = () => {
   return (
-    <div className="max-w-4xl mx-auto w-full px-4 md:px-8 lg:w-[70%] py-8 bg-white">
+    <div className="max-w-4xl justify-center items-center mx-auto w-full px-4 md:px-8 lg:w-[70%] py-8 bg-white">
       <div className="space-y-6 text-left md:text-center text-gray-700 leading-relaxed">
-        <p className="text-base sm:text-lg">
+        <MotionDiv
+          initial={{ opacity: 0, y: 20 }} // Initial state: hidden and positioned 20px down
+          animate={{ opacity: 1, y: 0 }} // Animate to full opacity and original position
+          transition={{ duration: 0.8 }} // Duration of the fade-in effect
+          className="text-base sm:text-lg"
+        >
           Our goal is to make heaven and raise generals in faith, take many
           along to heaven, and be a blessing to our generation.
-        </p>
+        </MotionDiv>
 
-        <p className="text-base sm:text-lg">
+        <MotionDiv
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }} // Delay the start slightly
+          className="text-base sm:text-lg"
+        >
           Through the word of God to those who are hungry, to satisfy their
           longing souls, nourish man with the living word to turn loose the
           power of God in man to become a blessing to his generation.
-        </p>
+        </MotionDiv>
 
-        <p className="text-base sm:text-lg">
+        <MotionDiv
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-base sm:text-lg"
+        >
           Our passion is to possess kingdoms and raise influential godly
           leaders, generals in faith and kingdom power. To create an atmosphere
           where mercy turns as many people we come in contact with into a
           blessing for their generation.
-        </p>
+        </MotionDiv>
       </div>
 
       <div className="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-y-0 sm:space-x-8 text-indigo-700">
@@ -40,6 +59,8 @@ const MissionStatement = () => {
           </div>
         </div>
       </div>
+
+      <OnlineServiceButton />
     </div>
   );
 };
