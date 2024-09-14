@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import axios from "axios";
-import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@chakra-ui/react";
+import {
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom"; // Import Link
 
 const Footer = () => {
@@ -55,7 +64,8 @@ const Footer = () => {
       console.error("Error submitting the form:", error);
       setModalContent({
         title: "Error",
-        description: "There was an error submitting your information. Please try again later.",
+        description:
+          "There was an error submitting your information. Please try again later.",
         status: "error",
       });
     } finally {
@@ -91,21 +101,50 @@ const Footer = () => {
               alt="House Of Mercy, Highwycombe"
               className="mb-4 h-10 md:h-12"
             />
-            <p className="text-xs md:text-sm mb-2">(480) 555-0103</p>
-            <p className="text-xs md:text-sm mb-2">RCCGHouseofmercy@Gmail.Com</p>
-            <p className="text-xs md:text-sm">114 Chapel Lane, Highwycombe, HP12 4by</p>
+            <p className="text-xs md:text-sm mb-2">
+              <a href="tel:+14805550103" className="hover:underline">
+                (480) 555-0103
+              </a>
+            </p>
+
+            <p className="text-xs md:text-sm mb-2">
+              <a
+                href="mailto:RCCGHouseofmercy@Gmail.Com"
+                className="hover:underline"
+              >
+                RCCGHouseofmercy@Gmail.Com
+              </a>
+            </p>
+
+            <p className="text-xs md:text-sm">
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=114+Chapel+Lane,+Highwycombe,+HP12+4by"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                114 Chapel Lane, Highwycombe, HP12 4by
+              </a>
+            </p>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-start">
             <div className="md:flex-1 mb-4 md:mb-0">
               <h3 className="text-lg md:text-xl font-semibold mb-4">Connect</h3>
               <div className="flex space-x-4 mb-4">
-                <FaFacebookF className="text-xl md:text-2xl" />
-                <FaInstagram className="text-xl md:text-2xl" />
+                {/* Social media placeholders */}
+                <a href="[Facebook Link]">
+                  <FaFacebookF className="text-xl md:text-2xl" />
+                </a>
+                <a href="[Instagram Link]">
+                  <FaInstagram className="text-xl md:text-2xl" />
+                </a>
               </div>
             </div>
             <div className="md:flex-1">
-              <h3 className="text-lg md:text-xl font-semibold mb-4">Quicklinks</h3>
+              <h3 className="text-lg md:text-xl font-semibold mb-4">
+                Quicklinks
+              </h3>
               <ul className="text-sm md:text-base">
                 <li className="mb-2">
                   <Link to="/">Home</Link>
@@ -171,9 +210,7 @@ const Footer = () => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>{modalContent?.title}</ModalHeader>
-          <ModalBody>
-            {modalContent?.description}
-          </ModalBody>
+          <ModalBody>{modalContent?.description}</ModalBody>
           <ModalFooter>
             <Button colorScheme={modalContent?.status} onClick={onClose}>
               Close

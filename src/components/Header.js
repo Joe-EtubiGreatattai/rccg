@@ -29,11 +29,14 @@ const Header = () => {
     <header className="bg-white py-4 shadow-md fixed top-0 left-0 w-full z-50">
       <div className="container mx-auto px-4 md:px-10">
         <div className="flex justify-between items-center">
-          <img
-            src={require("./../image/logo.png")}
-            alt="Logo"
-            className="h-12 md:h-15 w-auto md:w-60"
-          />
+          {/* Wrap the logo image in a NavLink */}
+          <NavLink to="/">
+            <img
+              src={require("./../image/logo.png")}
+              alt="Logo"
+              className="h-12 md:h-15 w-auto md:w-60"
+            />
+          </NavLink>
           <nav className="hidden md:flex space-x-8 items-center">
             {navLinks.map((link) => (
               <NavItem key={link.to} {...link} />
