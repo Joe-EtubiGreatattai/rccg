@@ -109,10 +109,10 @@ const Footer = () => {
 
             <p className="text-xs md:text-sm mb-2">
               <a
-                href="mailto:RCCGHouseofmercy@Gmail.Com"
+                href="mailto:pastorhouseofmercyhighwycombe@gmail.com"
                 className="hover:underline"
               >
-                RCCGHouseofmercy@Gmail.Com
+                pastorhouseofmercyhighwycombe@gmail.com
               </a>
             </p>
 
