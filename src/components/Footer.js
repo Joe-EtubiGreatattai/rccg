@@ -133,10 +133,10 @@ const Footer = () => {
               <h3 className="text-lg md:text-xl font-semibold mb-4">Connect</h3>
               <div className="flex space-x-4 mb-4">
                 {/* Social media placeholders */}
-                <a href="[Facebook Link]">
+                <a href="https://www.facebook.com/houseofmercyaylesbury">
                   <FaFacebookF className="text-xl md:text-2xl" />
                 </a>
-                <a href="[Instagram Link]">
+                <a href="https://www.instagram.com/rccg_hom?igsh=N3VlMHNiZnR5ZWdj">
                   <FaInstagram className="text-xl md:text-2xl" />
                 </a>
               </div>
