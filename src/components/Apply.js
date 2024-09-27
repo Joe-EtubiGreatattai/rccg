@@ -1,12 +1,18 @@
 import React from "react";
 import { motion } from "framer-motion";
-import backgroundImage from "./../image/goal.png";
+import backgroundImage from "./../image/bg-2.png";
 import ContactButton from "./ContactButton";
 
 // Animation variants for fade-in from the bottom
 const fadeInFromBottom = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0 },
+};
+
+// Hover effect for the overlay
+const overlayHover = {
+  rest: { scale: 1, opacity: 0.95 },
+  hover: { scale: 0.9, opacity: 0.7 },
 };
 
 const Apply = () => {
@@ -17,9 +23,25 @@ const Apply = () => {
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
-      <div className="absolute inset-0 bg-[#2E3795] opacity-70"></div>
-      <div className="absolute inset-0 bg-black opacity-80"></div>
+      {/* First overlay that shrinks on hover */}
+      <motion.div
+        className="absolute inset-0"
+        variants={overlayHover}
+        initial="rest"
+        whileHover="hover"
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      ></motion.div>
 
+      {/* Second overlay that shrinks on hover */}
+      <motion.div
+        className="absolute inset-0 bg-black"
+        variants={overlayHover}
+        initial="rest"
+        whileHover="hover"
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      ></motion.div>
+
+      {/* Text content */}
       <div className="relative text-white px-4 z-10">
         <motion.h1
           className="text-2xl md:text-5xl font-bold mb-4 mx-auto"
@@ -49,7 +71,7 @@ const Apply = () => {
           Thank you for being part of our mission to spread love and hope. We
           look forward to seeing you!
         </motion.p>
-        <ContactButton label="Apply/support"/>
+        <ContactButton label="Apply/support" />
       </div>
     </div>
   );

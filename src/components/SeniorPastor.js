@@ -20,9 +20,9 @@ const SeniorPastor = () => {
         transition={{ duration: 0.8 }} // Duration of the fade-in effect
         className="text-xl sm:text-2xl md:text-5xl font-bold text-center text-indigo-700 mb-9 sm:mb-8"
       >
-        Meet Our Senior Pastor
+        Board of Trustees
       </MotionH2>
-      <div className="flex flex-col md:flex-row justify-center md:space-x-6 w-full">
+      <div className="flex flex-col md:flex-row mt-20 justify-center md:space-x-6 w-full">
         <MotionDiv
           initial={{ opacity: 0, x: -20 }} // Start from left
           animate={{ opacity: 1, x: 0 }} // Animate to full opacity and original position
@@ -41,6 +41,7 @@ const SeniorPastor = () => {
           transition={{ duration: 0.8 }} // Duration of the fade-in effect
           className="w-full md:w-1/2 mt-10 md:mt-0"
         >
+        <p className="text-m sm:text-l md:text-3xl font-bold text-black mb-9 sm:mb-8">Meet our senior pastor</p>
           <MotionP
             initial={{ opacity: 0, x: -20 }} // Start from left
             animate={{ opacity: 1, x: 0 }} // Animate to full opacity and original position

@@ -67,7 +67,7 @@ const ParishPastor = () => {
             transition={{ duration: 0.8, delay: 0.2 }} // Slight delay for heading
             className="text-xl font-bold text-gray-800 mb-4"
           >
-            Assistant parish pastor
+            Deputy  Parish Pastor
           </MotionH2>
           <div className="relative">
             <MotionImg

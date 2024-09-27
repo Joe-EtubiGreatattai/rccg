@@ -62,12 +62,8 @@ const Gallery = ({ galleryData }) => {
 
 // Example usage of Gallery component
 const imagesArray = [
-  { imageSrc: require('./../image/gallary.png'), date: '1st Sept 2024' },
-  { imageSrc: require('./../image/gallary.png'), date: '2nd Sept 2024' },
-  { imageSrc: require('./../image/gallary.png'), date: '3rd Sept 2024' },
-  { imageSrc: require('./../image/gallary.png'), date: '1st Sept 2024' },
-  { imageSrc: require('./../image/gallary.png'), date: '2nd Sept 2024' },
-  { imageSrc: require('./../image/gallary.png'), date: '3rd Sept 2024' },
+  { imageSrc: require('./../image/WhatsApp Image 2024-08-07 at 13.03.26_7704f891 1.png'), date: '20th Jan 2024' },
+  { imageSrc: require('./../image/past.png'), date: '1st Sept 2024' },
   // Add more images and dates here
 ];
 

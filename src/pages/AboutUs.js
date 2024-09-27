@@ -9,6 +9,7 @@ import SeniorPastor from "../components/SeniorPastor";
 import ParishPastor from "../components/ParishPastor";
 import Gallery from "../components/Gallary";
 import AnimatedSection from "../components/AnimatedSection";
+import DivisionLeads from "../components/DivisionLeads";
 
 // Define animation variants
 const fadeInUpVariants = {
@@ -36,6 +37,9 @@ export default function AboutUs() {
       </AnimatedSection>
       <AnimatedSection animationVariants={fadeInUpVariants}>
         <ParishPastor />
+      </AnimatedSection>
+      <AnimatedSection animationVariants={fadeInUpVariants}>
+        <DivisionLeads />
       </AnimatedSection>
       <AnimatedSection animationVariants={fadeInUpVariants}>
         <Gallery />

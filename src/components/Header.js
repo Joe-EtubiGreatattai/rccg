@@ -46,7 +46,7 @@ const Header = () => {
             </NavLink>
           </nav>
           <button
-            className="md:hidden focus:outline-none"
+            className="md:hidden text-black focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
