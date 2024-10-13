@@ -43,19 +43,21 @@ const Gallery = ({ galleryData }) => {
     <VStack spacing={8} align="stretch" p={8}>
       <Heading as="h1" size="2xl" textAlign="center" color="blue.800">
         Gallery
-      </Heading>''
-      <Text fontSize="xl" textAlign="center" color="black">
-        Take a look at the beautiful moments from every service at
-      </Text>
-      <SimpleGrid columns={[1, 2, 3]} spacing={6}>
-        {galleryData.map((item, index) => (
-          <GalleryItem 
-            key={index} 
-            imageSrc={item.imageSrc}
-            date={item.date}
-          />
-        ))}
-      </SimpleGrid>
+      </Heading>
+    
+      
+      {/* Center the grid */}
+      <Box display="flex" justifyContent="center">
+        <SimpleGrid columns={[1, 2, 3]} spacing={6} maxW="1200px" mx="auto">
+          {galleryData.map((item, index) => (
+            <GalleryItem 
+              key={index} 
+              imageSrc={item.imageSrc}
+              date={item.date}
+            />
+          ))}
+        </SimpleGrid>
+      </Box>
     </VStack>
   );
 };

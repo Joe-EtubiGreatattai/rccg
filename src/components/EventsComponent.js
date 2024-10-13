@@ -33,7 +33,7 @@ const EventsComponent = () => {
   ];
 
   const getItemsPerPage = () => {
-    return window.innerWidth < 640 ? 1 : 3; // Show 1 item on mobile, 3 on larger screens
+    return window.innerWidth < 640 ? 1 : 4; // Show 1 item on mobile, 3 on larger screens
   };
 
   const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage());

@@ -6,91 +6,64 @@ const MotionImg = motion.img;
 const MotionH2 = motion.h2;
 const MotionP = motion.p;
 
-const ParishPastor = () => {
+const ParishPastors = () => {
   const pastors = [
     {
       name: "Pastor Mrs Olufunke Stephen",
+      title: "Parish Pastor",
       img: require("./../image/Group7(1).png"),
     },
     {
       name: "Pastor Bimpe Lawal",
+      title: "Deputy Parish Pastor",
       img: require("./../image/Group7(2).png"),
+    },
+    {
+      name: "Pastor Victor Obanawu",
+      title: "Assistant Parish Pastor",
+      img: require("./../image/pastor_victor.png"),
     },
   ];
 
   return (
-    <div className="w-full md:h-[80vh] ">
-      <div className="flex h-full flex-col md:flex-row">
-        <MotionDiv
-          initial={{ opacity: 0, x: -100 }} // Start from left with some offset
-          animate={{ opacity: 1, x: 0 }} // Slide to original position
-          transition={{ duration: 0.8 }} // Duration of the slide-in effect
-          className="w-full md:w-1/2 bg-gray-900 p-8 flex flex-col justify-center items-center"
+    <div className="w-full bg-white py-12">
+      <div className="container mx-auto px-4">
+        <MotionH2
+          initial={{ opacity: 0, x: [-20, 20] }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-xl sm:text-2xl md:text-5xl font-bold text-center text-indigo-700 mb-9 sm:mb-8"
         >
-          <MotionH2
-            initial={{ opacity: 0, x: -50 }} // Slight offset for heading
-            animate={{ opacity: 1, x: 0 }} // Animate to full opacity and centered
-            transition={{ duration: 0.8, delay: 0.2 }} // Slight delay for heading
-            className="text-xl font-bold text-white mb-4"
-          >
-            Meet our parish pastor
-          </MotionH2>
-          <div className="relative">
-            <MotionImg
-              src={pastors[0].img}
-              alt={pastors[0].name}
-              initial={{ opacity: 0, x: -100 }} // Start from left
-              animate={{ opacity: 1, x: 0 }} // Slide to original position
-              transition={{ duration: 0.8 }} // Duration of the slide-in effect
-              className="w-full md:h-[310.58px] md:w-[365px] rounded-lg"
-            />
-          </div>
-          <MotionP
-            initial={{ opacity: 0, x: -50 }} // Slight offset for paragraph
-            animate={{ opacity: 1, x: 0 }} // Animate to full opacity and centered
-            transition={{ duration: 0.8, delay: 0.4 }} // Slight delay for paragraph
-            className="mt-4 text-lg font-semibold text-white"
-          >
-            {pastors[0].name}
-          </MotionP>
-        </MotionDiv>
-
-        <MotionDiv
-          initial={{ opacity: 0, x: 100 }} // Start from right with some offset
-          animate={{ opacity: 1, x: 0 }} // Slide to original position
-          transition={{ duration: 0.8 }} // Duration of the slide-in effect
-          className="w-full md:w-1/2 bg-gray-100 p-8 flex flex-col justify-center items-center"
-        >
-          <MotionH2
-            initial={{ opacity: 0, x: 50 }} // Slight offset for heading
-            animate={{ opacity: 1, x: 0 }} // Animate to full opacity and centered
-            transition={{ duration: 0.8, delay: 0.2 }} // Slight delay for heading
-            className="text-xl font-bold text-gray-800 mb-4"
-          >
-            Deputy  Parish Pastor
-          </MotionH2>
-          <div className="relative">
-            <MotionImg
-              src={pastors[1].img}
-              alt={pastors[1].name}
-              initial={{ opacity: 0, x: 100 }} // Start from right
-              animate={{ opacity: 1, x: 0 }} // Slide to original position
-              transition={{ duration: 0.8 }} // Duration of the slide-in effect
-              className="w-full md:h-[310.58px] md:w-[365px] rounded-lg"
-            />
-          </div>
-          <MotionP
-            initial={{ opacity: 0, x: 50 }} // Slight offset for paragraph
-            animate={{ opacity: 1, x: 0 }} // Animate to full opacity and centered
-            transition={{ duration: 0.8, delay: 0.4 }} // Slight delay for paragraph
-            className="mt-4 text-lg font-semibold text-gray-800"
-          >
-            {pastors[1].name}
-          </MotionP>
-        </MotionDiv>
+          Parish Pastors
+        </MotionH2>
+        <div className="flex flex-col md:flex-row justify-center items-start space-y-12 md:space-y-0 md:space-x-8 lg:space-x-16">
+          {pastors.map((pastor, index) => (
+            <MotionDiv
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="flex flex-col items-center w-full md:w-1/3 max-w-sm"
+            >
+              <div className="w-full flex justify-center mb-4">
+                <MotionImg
+                  src={pastor.img}
+                  alt={pastor.name}
+                  className="w-4/5 md:w-full md:h-[25rem] object-contain"
+                />
+              </div>
+              <MotionH2 className="text-m sm:text-l md:text-3xl font-bold text-black mb-2 text-left w-full">
+                {pastor.name}
+              </MotionH2>
+              <MotionP className="text-base md:text-lg text-gray-700 text-left w-full">
+                {pastor.title}
+              </MotionP>
+            </MotionDiv>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-export default ParishPastor;
+export default ParishPastors;
